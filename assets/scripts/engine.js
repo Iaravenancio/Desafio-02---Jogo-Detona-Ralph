@@ -4,12 +4,14 @@ const state = {
         enemy: document.querySelector('.enemy'),
         timeLeft: document.querySelector('#time-left'),
         score: document.querySelector('#score'),
+        lives: document.querySelector('#lives')
     },
     values: {
         gameVelocity: 1000,
         hitPosition: 0,
         result: 0,
         curretTime: 60,
+        livesRemaining: 3,
     },
     actions:{
         timerId: setInterval(randomSquare, 1000),
@@ -53,10 +55,21 @@ function addListenerHitbox(){
     state.view.squares.forEach((square) => {
         square.addEventListener('mousedown', () =>{
             if(square.id === state.values.hitPosition){
-                state.values.result++
+                state.values.result++;
                 state.view.score.textContent = state.values.result;
                 state.values.hitPosition = null;
-                playSound('audio');
+                playSound('audio'); // Certifique-se de que 'audio' é o nome correto do arquivo de som para acertos
+            } else {
+                // Se não clicou no Detona Ralph, diminui uma vida
+                state.values.livesRemaining--;
+                state.view.lives.textContent = state.values.livesRemaining; // Atualiza a exibição das vidas
+                // playSound('wrong'); // Adicione um som para quando erra, se desejar (e um arquivo 'wrong.m4a')
+
+                if (state.values.livesRemaining <= 0) {
+                    clearInterval(state.actions.countDownTimerId);
+                    clearInterval(state.actions.timerId);
+                    alert('Game Over! Você ficou sem vidas. Seu resultado foi: ' + state.values.result);
+                }
             }
         });
     });
