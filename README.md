@@ -1,7 +1,6 @@
 # Desafio 02: Criando o Jogo Detona Ralph com HTML, CSS e JavaScript
 
 ## Incrível JSGame Detona Ralph
-
 Bem-vindo ao JSGame Detona Ralph! Neste repositório, você encontrará um jogo divertido baseado no famoso filme "Detona Ralph". Este projeto não oferece apenas entretenimento, mas também demonstra várias técnicas avançadas de desenvolvimento de jogos em JavaScript.
 
 ### Tecnologias Utilizadas
